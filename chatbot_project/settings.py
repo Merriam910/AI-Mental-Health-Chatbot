@@ -59,6 +59,7 @@ WSGI_APPLICATION = 'chatbot_project.wsgi.application'
 if 'RENDER' in os.environ:
     DATABASES = {
         'default': dj_database_url.config(default=os.getenv('DB_URL'))
+        
     }
 else:
     DATABASES = {

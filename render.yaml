@@ -1,9 +1,9 @@
-services:
+ services:
   - type: web
     name: chatbot-web
     runtime: python
-    buildCommand: "./build.bat"
-    startCommand: "gunicorn chatbot_project.wsgi:application --timeout 120"
+    buildCommand: "if [ -f build.sh ]; then ./build.sh; else ./build.bat; fi"   
+    startCommand: "gunicorn chatbot_project.wsgi:application --workers 1 --threads 2 --timeout 180 --bind 0.0.0.0:10000"
     envVars:
       - key: SECRET_KEY
         generateValue: true
@@ -13,13 +13,11 @@ services:
         fromDatabase:
           name: chatbot-db
           property: connectionString
-      - key: PYTHON_VERSION
-        value: "3.10.8"
+      - key: PYTHONUNBUFFERED
+        value: "1"
     plan: free
-    healthCheckPath: "/"
-    
-databases:
+    healthCheckPath: "/health/"
+
+ databases:
   - name: chatbot-db
     plan: free
-    databaseName: chatbot_db
-    user: chatbot_user
