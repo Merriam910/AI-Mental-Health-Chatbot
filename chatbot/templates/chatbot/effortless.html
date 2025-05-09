@@ -1,0 +1,214 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Effortless AI Mental Health Chatbot</title>
+  <head>
+    <!-- Add this in your head tag to include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  </head>
+
+  <style>
+    .footer {
+        position: relative;
+        width: 119%;
+        background-color: #2B7A69;
+        border-radius: 0px 0px 0 0;
+        padding: 2rem 1rem;
+        margin-top: 5rem;
+        text-align: center;
+        box-sizing: border-box;
+        margin-left: -13.5rem;
+        margin-bottom: -127px;
+    }
+      
+    .footer-line {
+        background-color: #2B7A69;
+        height: 5px;
+        width: 100%;
+    }
+      
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        margin-left: 10rem;
+    }
+      
+    .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: white;
+        color: #2B7A69;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+    }
+      
+    .social-icons a:hover {
+        background-color: #24695b;
+        color: white;
+    }
+      
+    .copyright {
+        margin-top: 1rem;
+        color: white;
+        font-size: 1rem;
+        margin-left: 10rem;
+    }
+
+    /* Add styles for the page */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .main-content {
+        text-align: center;
+        margin-top: 50px;
+        padding: 20px;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    .main-content h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #2B7A69;
+    }
+
+    .main-content p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 10px 0;
+    }
+
+    /* Footer styling */
+    .footer {
+        position: relative;
+        background-color: #2B7A69;
+        border-radius: 0px 0px 0 0;
+        padding: 2rem 1rem;
+        margin-top: 5rem;
+        text-align: center;
+        box-sizing: border-box;
+        margin-left: -11.5rem;
+        margin-bottom: -127px;
+    }
+
+    .footer-line {
+        background-color: #2B7A69;
+        height: 100px;
+        width: 0%;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: -4rem;
+        margin-bottom: 1rem;
+        margin-left: 10rem;
+    }
+
+    .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: white;
+        color: #2B7A69;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        background-color: #24695b;
+        color: white;
+    }
+
+    .copyright {
+        margin-top: 1rem;
+        color: white;
+        font-size: 1rem;
+        margin-left: 10rem;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0; /* Start with fully transparent */
+        }
+        to {
+            opacity: 1; /* End with fully visible */
+        }
+    }
+    @media (max-width: 600px) {
+      .contact-form {
+        padding: 20px 15px;
+      }
+
+      .send-btn {
+        width: 100%;
+      }
+    }
+    @media (min-width: 601px) {
+      .form-row .form-group {
+        flex: 1 1 48%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script src="{% static 'chatbot/js/navbar.js' %}"></script>
+
+  <section class="main-content">
+    <h1>Effortless Mental Health Support</h1>
+    <p>In today's fast-paced world, taking care of your mental health can feel overwhelming. That's where we come in. Our AI-powered mental health chatbot is designed to offer you easy, on-demand emotional support whenever you need it. Whether you're feeling stressed, anxious, or simply need a listening ear, our chatbot, Mim, is here to help.</p>
+
+    <p>With Mim, accessing mental health support becomes effortless. You don't need to worry about appointments, wait times, or the stigma of seeking help. Mim offers a confidential space where you can talk about your feelings, track your mood, and receive personalized guidance anytime, anywhere. Our goal is to make mental wellness simple, approachable, and available to everyone.</p>
+
+    <p>Using advanced AI technology, Mim understands your emotions and provides thoughtful, empathetic responses. Whether you need advice on managing anxiety, calming exercises, or just want someone to chat with, Mim is always available to offer support and advice that suits your personal needs.</p>
+
+    <p>Join us in revolutionizing mental health care. Experience the future of mental wellness with Mim – your personal AI companion on the journey to better mental health.</p>
+  </section>
+
+  <section class="footer">
+    <div class="footer-line"></div>
+    
+    <!-- Social Media Icons -->
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank" title="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://twitter.com" target="_blank" title="Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://instagram.com" target="_blank" title="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://youtube.com" target="_blank" title="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </div>
+    
+    <!-- Copyright Text -->
+    <div class="copyright">
+      &copy; 2025 All Rights Reserved
+    </div>
+  
+</section>
+</body>
+</html>

@@ -1,0 +1,231 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign Up</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+  }
+
+  .container {
+    background-color: #327569;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+  }
+
+  .background-image-box {
+    position: absolute;
+    width: 90%;
+    max-width: 1118px;
+    height: 450px;
+    background-image: url('https://res.cloudinary.com/dm4vmfqle/image/upload/v1745955367/gd3e9fa968dc545cc08ac05a53628-h_m5jw6be2_gp9w6x.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 0;
+    z-index: 0;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    .background-image-box {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      border-radius: 0;
+    }
+  }
+
+  .login-box {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.65);
+    padding: 35px;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+    max-width: 444px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+  
+
+  .icon {
+    width: 145px;
+    margin-bottom: 4px;
+  }
+
+  input[type="email"],
+  input[type="password"],
+  input[type="text"],
+  button {
+    width: 85%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  input {
+    border: 1px solid #ccc;
+  }
+
+  button {
+    background-color: #327569;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #285e55;
+  }
+
+  p {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+
+  a {
+    color: #007BFF;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(50, 117, 105, 0.9);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+  }
+
+  .back-button:hover {
+    background-color: #285e55;
+  }
+  .visibility-toggle {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #555;
+  }
+  
+</style>
+
+<body>
+  <div class="container">
+    <div class="background-image-box"></div>
+    <div class="login-box">
+      <img src="https://res.cloudinary.com/dm4vmfqle/image/upload/v1745707988/1000_F_268887497_zUduupxYhFf0plFgjgga03unIi8ovX0k-removebg-preview_1_vhe8zr.png" alt="Robot Icon" class="icon">
+      <h2>Sign Up!</h2>
+      {% if messages %}
+  <div style="margin-bottom: 15px;">
+    {% for message in messages %}
+      <div style="
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        color: {% if message.tags == 'error' %}#842029{% else %}#0f5132{% endif %};
+        background-color: {% if message.tags == 'error' %}#f8d7da{% else %}#d1e7dd{% endif %};
+        border: 1px solid {% if message.tags == 'error' %}#f5c2c7{% else %}#badbcc{% endif %};
+      ">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+      <form method="POST" onsubmit="return validateForm()">
+        {% csrf_token %}
+      
+        <!-- First name input -->
+        <input type="text" name="first_name" placeholder="Enter Your Name" required>
+      
+        <!-- Email -->
+        <input type="email" name="email" placeholder="Enter Your Email" required>
+      
+        <!-- Password with toggle -->
+        <div style="position: relative;">
+          <input type="password" name="password" id="password" placeholder="Enter Your Password" required>
+          <span class="material-icons visibility-toggle" onclick="toggleVisibility('password')">visibility_off</span>
+        </div>
+        
+        <div style="position: relative;">
+          <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
+          <span class="material-icons visibility-toggle" onclick="toggleVisibility('confirm_password')">visibility_off</span>
+        </div>
+      
+        <!-- Password tip -->
+        <small style="color: #333;">Password should be <strong>max 8 characters</strong>, including a number and a symbol</small>
+      
+        <button type="submit">Sign Up</button>
+      </form>
+      
+      
+    <p>Already have an account? <a href="{% url 'login' %}" class="login-btn">Login Here</a></p>
+ 
+    <a href="{% url 'home' %}"class="back-button">Home</a>
+
+        
+    </div>
+
+  </div>
+  <script>
+    function toggleVisibility(fieldId, icon) {
+      const input = document.getElementById(fieldId);
+      if (input.type === "password") {
+        input.type = "text";
+        icon.textContent = "visibility";
+      } else {
+        input.type = "password";
+        icon.textContent = "visibility_off";
+      }
+    }
+
+    function validateForm() {
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm_password").value;
+
+      if (password !== confirmPassword) {
+        document.getElementById("error-message").style.display = "block";
+        document.getElementById("popup-message").style.display = "none";
+        return false;
+      }
+
+      document.getElementById("error-message").style.display = "none";
+      document.getElementById("popup-message").style.display = "block";
+      return true;
+    }
+  </script>
+  
+</body>
+</html>

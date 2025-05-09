@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  <head>
+    <!-- Add this in your head tag to include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  </head>
+
+  <style>
+    /* Add styles for the About Us section */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .about-us {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      opacity: 0; /* Initially hidden */
+      animation: fadeIn 2s forwards; /* Fade-in effect */
+    }
+
+    .about-us h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #2B7A69;
+    }
+
+    .about-us p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 10px 0;
+    }
+    @keyframes fadeIn {
+        from {
+          opacity: 0; /* Start with fully transparent */
+        }
+        to {
+          opacity: 1; /* End with fully visible */
+        }
+    }
+
+    /* Footer styling */
+    .footer {
+        position: relative;
+        background-color: #2B7A69;
+        border-radius: 0px 0px 0 0;
+        padding: 2rem 1rem;
+        margin-top: 5rem;
+        text-align: center;
+        box-sizing: border-box;
+        margin-left: -11.5rem;
+        margin-bottom: -127px;
+    }
+
+    .footer-line {
+        background-color: #2B7A69;
+        height: 100px;
+        width: 0%;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: -4rem;
+        margin-bottom: 1rem;
+        margin-left: 10rem;
+    }
+
+    .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: white;
+        color: #2B7A69;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        background-color: #24695b;
+        color: white;
+    }
+
+    .copyright {
+        margin-top: 1rem;
+        color: white;
+        font-size: 1rem;
+        margin-left: 10rem;
+    }
+
+  </style>
+</head>
+<body>
+  <section class="about-us">
+    <h1>Try the AI Mental Health Chatbot Today!</h1>
+    <p>Taking care of your mental health has never been easier. Our AI-powered chatbot is available 24/7 to provide support, guidance, and coping strategies. Whether you're feeling stressed, anxious, or just need someone to talk to, our chatbot is here to listen and help.</p>
+
+    <p>Mim, our AI-driven mental health chatbot, is designed to be your personal mental wellness ally. We know that mental health support is vital, yet sometimes hard to find when you need it most. That’s why Mim is always available, whenever you need assistance, advice, or just someone to talk to.</p>
+
+    <p>Our goal is to create a supportive, non-judgmental space where you can freely express your thoughts and emotions. Mim leverages advanced AI algorithms to understand your emotional state, providing empathetic and tailored support in real time. It can help with everything from stress management and anxiety relief to mood tracking and relaxation techniques.</p>
+
+    <p>We believe that mental health care should be accessible to everyone, without the need for appointments or waiting rooms. Whether you're at home, at work, or on the go, Mim is just a chat away. Mim doesn’t just offer general advice, it listens to you and customizes its responses to your specific needs, ensuring that the support you receive is both relevant and helpful.</p>
+
+    <p>Join the thousands of people who have already discovered the benefits of having a compassionate, AI-powered assistant to help manage their mental well-being. With Mim, mental health care is not only easy but also private, personal, and supportive.</p>
+  </section>
+
+  <section class="footer">
+    <div class="footer-line"></div>
+    
+    <!-- Social Media Icons -->
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank" title="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://twitter.com" target="_blank" title="Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://instagram.com" target="_blank" title="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://youtube.com" target="_blank" title="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </div>
+    
+    <!-- Copyright Text -->
+    <div class="copyright">
+      &copy; 2025 All Rights Reserved
+    </div>
+  </section>
+  <script src="{% static 'chatbot/js/navbar.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  <head>
+    <!-- Add this in your head tag to include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  </head>
+
+  <style>
+    /* Add styles for the About Us section */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .about-us {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      opacity: 0; /* Initially hidden */
+      animation: fadeIn 2s forwards; /* Fade-in effect */
+    }
+
+    .about-us h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #2B7A69;
+    }
+
+    .about-us p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 10px 0;
+    }
+    @keyframes fadeIn {
+        from {
+          opacity: 0; /* Start with fully transparent */
+        }
+        to {
+          opacity: 2; /* End with fully visible */
+        }
+      }
+
+    /* Footer styling */
+    .footer {
+        position: relative;
+        
+        background-color: #2B7A69;
+        border-radius: 0px 0px 0 0;
+        padding: 2rem 1rem;
+        margin-top: 5rem;
+        text-align: center;
+        box-sizing: border-box;
+        margin-left: -11.5rem;
+        margin-bottom: -127px;
+    }
+
+    .footer-line {
+        background-color: #2B7A69;
+        height: 100px;
+        width: 0%;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: -4rem;
+        margin-bottom: 1rem;
+        margin-left: 10rem;
+    }
+
+    .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: white;
+        color: #2B7A69;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        background-color: #24695b;
+        color: white;
+    }
+
+    .copyright {
+        margin-top: 1rem;
+        color: white;
+        font-size: 1rem;
+        margin-left: 10rem;
+    }
+
+  </style>
+</head>
+<body>
+  <script src="{% static 'chatbot/js/navbar.js' %}"></script>
+
+  <section class="about-us">
+    <h1>About Us</h1>
+    <p>Welcome to AI Mental Health Chatbot-Mim, your dedicated AI-powered mental health chatbot. In today's fast-paced world, mental well-being is more important than ever, and we aim to make support more accessible. Our AI-driven chatbot, Mim, is designed to provide on-demand mental health support, offering everything from stress management advice to mood tracking and coping strategies.</p>
+
+    <p>We understand the challenges people face when seeking help, whether it's the stigma associated with mental health or simply not knowing where to start. With Mim, we break down those barriers and provide a safe, confidential space where you can discuss your feelings and receive personalized advice anytime, anywhere.</p>
+
+    <p>Mim is built using state-of-the-art AI technology, trained to understand human emotions and offer empathetic responses. It can detect changes in your emotional state and suggest helpful coping strategies, therapeutic exercises, and more. Our goal is to ensure that mental health support is available to everyone, no matter their background or location.</p>
+
+    <p>With Mim, your mental wellness is just a chat away. Our AI assistant is constantly learning and evolving to provide better, more accurate insights tailored specifically to your needs. Whether you're looking for advice on managing anxiety, improving your mood, or simply need someone to talk to, Mim is here for you 24/7.</p>
+
+    <p>Join us on our mission to make mental health care accessible, private, and effortless for everyone.</p>
+  </section>
+
+  <section class="footer">
+        <div class="footer-line"></div>
+        
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" title="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://youtube.com" target="_blank" title="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+        
+        <!-- Copyright Text -->
+        <div class="copyright">
+          &copy; 2025 All Rights Reserved
+        </div>
+      
+  </section>
+</body>
+</html>

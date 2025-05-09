@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radically Private</title>
+  <head>
+    <!-- Add this in your head tag to include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  </head>
+
+  <style>
+    .footer {
+        position: relative;
+        
+        background-color: #2B7A69;
+        border-radius: 0px 0px 0 0;
+        padding: 2rem 1rem;
+        margin-top: 5rem;
+        text-align: center;
+        box-sizing: border-box;
+        margin-left: -11.5rem;
+        margin-bottom: -127px;
+    }
+
+    .footer-line {
+        background-color: #2B7A69;
+        height: 100px;
+        width: 0%;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: -4rem;
+        margin-bottom: 1rem;
+        margin-left: 10rem;
+    }
+
+    .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: white;
+        color: #2B7A69;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        background-color: #24695b;
+        color: white;
+    }
+
+    .copyright {
+        margin-top: 1rem;
+        color: white;
+        font-size: 1rem;
+        margin-left: 10rem;
+    }
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .radically-private {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      opacity: 0; /* Initial state for the fade-in effect */
+      animation: fadeIn 2s forwards; /* Apply the fade-in animation */
+    }
+
+    .radically-private h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #2B7A69;
+    }
+
+    .radically-private p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 10px 0;
+    }
+
+    /* Define fade-in animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <script src="{% static 'chatbot/js/navbar.js' %}"></script>
+
+    <!-- Radically Private Section -->
+    <section class="radically-private">
+      <h1>Radically Private</h1>
+      <p>Welcome to Radically Private, a revolutionary step forward in mental health support. At Radically Private, we believe that privacy is a fundamental human right, especially when it comes to your mental health. That's why we've designed an AI-powered mental health chatbot, Mim, that prioritizes your privacy above all else.</p>
+
+      <p>Our AI chatbot Mim is created to ensure your conversations are completely confidential. We understand that mental health is a deeply personal subject, and many people are hesitant to seek help because of privacy concerns. With Mim, you can rest assured that your data is never shared, and your identity remains anonymous. Mim is here to listen, understand, and provide you with helpful resources—without ever compromising your privacy.</p>
+
+      <p>Mim's advanced AI technology is built with encryption protocols and security features that guarantee your information is safe. We use the latest in AI to provide personalized mental health support, including strategies for managing stress, anxiety, depression, and more. Mim adapts to your emotional needs, learning from every interaction to better assist you on your mental wellness journey.</p>
+
+      <p>By embracing the concept of "radically private," we offer a solution that gives you the freedom to speak openly, knowing that your mental health support is just a chat away, always safe, and never shared with anyone else.</p>
+
+      <p>Join us on a journey toward better mental health with complete privacy, transparency, and care. Mim is always here for you when you need it most.</p>
+    </section>
+
+    <!-- Footer Section -->
+    <section class="footer">
+        <div class="footer-line"></div>
+        
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" title="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://youtube.com" target="_blank" title="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+        
+        <!-- Copyright Text -->
+        <div class="copyright">
+          &copy; 2025 All Rights Reserved
+        </div>
+      
+  </section>
+</body>
+</html>

@@ -1,0 +1,369 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    <title>BlenderBot Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2B7A69;
+            background-image: url('https://www.obcankari.cz/sites/default/files/styles/large/public/obrazky/ai-generated-8475824_12801.jpg?itok=jtdlx5A2');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 1150px 75%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 450px;
+            height: 550px;
+            background-color: rgba(255, 255, 255, 0.65);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            color: black;
+            padding: 10px 17px;
+            font-size: 20px;
+            font-weight: normal;
+            height: 55px;
+        }
+
+        .chat-header img {
+            width: 88px;
+            height: 80px;
+            margin-right: -1px;
+            margin-left: -16px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        #close-btn {
+            margin-left: auto;
+            cursor: pointer;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        #chat-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        .user-message, .bot-message {
+            padding: 10px;
+            border-radius: 8px;
+            margin: 6px 10px;
+            max-width: 75%;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background-color: #6DA397;
+            margin-left: auto;
+        }
+
+        .bot-message {
+            background-color: #f2f2f2;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            background-color: white;
+        }
+
+        #user-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #send-btn {
+            background-color: #6DA397;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .modal-box {
+            background-color: white;
+            border: 1px solid black;
+            padding: 8px;
+            width: 350px;
+            border-radius: 0px;
+            text-align: center;
+        }
+
+        .modal-box textarea {
+            width: 100%;
+            height: 80px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            padding: 0px;
+            resize: none;
+        }
+
+        .modal-box button {
+            margin: 0 5px;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 30px;
+            background-color: #6DA397;
+        }
+
+        .circle-button {
+            width: 114px;
+            height: 42px;
+            border-radius: 80px;
+            border: none;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 10px 5px;
+            cursor: pointer;
+        }
+
+        .give-button {
+            background-color: white;
+            color: #000000;
+            border: 1px solid #000000;
+        }
+
+        .exit-button {
+            background-color: #6DA397;
+            color: black;
+            border-radius: 30px;
+        }
+
+        #feedback-modal p {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        #feedback-modal .feedback-text {
+            font-size: 14px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <img src="https://res.cloudinary.com/dm4vmfqle/image/upload/v1745707988/1000_F_268887497_zUduupxYhFf0plFgjgga03unIi8ovX0k-removebg-preview_1_vhe8zr.png" alt="Logo">
+            AI Mental Health Chatbot - Mim
+            <span id="close-btn">&times;</span>
+        </div>
+
+        <div id="chat-messages"></div>
+
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Type your message">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <div id="feedback-modal" class="modal-overlay">
+        <div class="modal-box">
+            <p>Session Ended</p>
+            <p class="feedback-text">Share your feedback as it helps us to improve!</p>
+            <button id="give-feedback" class="circle-button give-button">Give</button>
+            <button id="exit-bot" class="circle-button exit-button">Exit</button>
+        </div>
+    </div>
+
+    <div id="feedback-text-modal" class="modal-overlay">
+        <div class="modal-box">
+            <p>Leave your feedback:</p>
+            <textarea id="feedback-text" placeholder="Type your feedback here..."></textarea><br>
+            <button id="submit-feedback">Submit</button>
+        </div>
+    </div>
+
+    <div id="thankyou-modal" class="modal-overlay">
+        <div class="modal-box">
+            <p>Feedback Submitted, Thank you!</p>
+            <button onclick="document.getElementById('thankyou-modal').style.display='none'">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Get CSRF token from cookies
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    
+        // Send message when 'Send' button is clicked
+        document.getElementById('send-btn').addEventListener('click', async function () {
+            const userInput = document.getElementById('user-input');
+            const message = userInput.value.trim();
+    
+            if (message) {
+                // Add user message to the chat
+                const userMsg = document.createElement('div');
+                userMsg.className = 'user-message';
+                userMsg.textContent = message;
+                document.getElementById('chat-messages').appendChild(userMsg);
+                userInput.value = '';
+    
+                // Send message to server and get response
+                const response = await fetch("{% url 'chat' %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    body: JSON.stringify({ message: message })
+                });
+    
+                const data = await response.json();
+                const botMsg = document.createElement('div');
+                botMsg.className = 'bot-message';
+                botMsg.textContent = data.response;
+                document.getElementById('chat-messages').appendChild(botMsg);
+    
+                // Scroll to bottom
+                const chatBox = document.getElementById('chat-messages');
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        });
+    
+        // Allow sending message with Enter key
+        document.getElementById('user-input').addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                document.getElementById('send-btn').click();
+            }
+        });
+    
+        // Close button: show feedback modal
+        document.getElementById('close-btn').addEventListener('click', function () {
+            document.getElementById('feedback-modal').style.display = 'flex';
+        });
+    
+        // Feedback modal options
+        document.getElementById('give-feedback').addEventListener('click', function () {
+            document.getElementById('feedback-modal').style.display = 'none';
+            document.getElementById('feedback-text-modal').style.display = 'flex';
+        });
+    
+        document.getElementById('exit-bot').addEventListener('click', function () {
+            document.querySelector('.chat-container').style.display = 'none';
+            document.getElementById('feedback-modal').style.display = 'none';
+            window.location.href = '{% url "home" %}';
+        });
+    
+        // Submit feedback
+        document.getElementById('submit-feedback').addEventListener('click', function () {
+            const content = document.getElementById('feedback-text').value.trim();
+    
+            fetch("{% url 'submit_feedback' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({ content: content })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    document.getElementById('feedback-text-modal').style.display = 'none';
+                    document.getElementById('thankyou-modal').style.display = 'flex';
+                    document.getElementById('feedback-text').value = '';
+                    setTimeout(function () {
+                        window.location.href = '{% url "home" %}';
+                    }, 1000);
+                } else {
+                    alert("Error submitting feedback: " + data.message);
+                }
+            })
+            .catch(error => {
+                console.error("Feedback error:", error);
+                alert("An unexpected error occurred.");
+            });
+        });
+    
+        // Close thank-you modal
+        document.getElementById('thankyou-modal').querySelector('button').addEventListener('click', function () {
+            window.location.href = '{% url "home" %}';
+        });
+    
+        // End session on page unload using sendBeacon
+        window.addEventListener('beforeunload', function () {
+            const url = '/end-session-on-close/';
+            const data = new Blob([], { type: 'application/json' });
+            navigator.sendBeacon(url, data);
+        });
+    // Close feedback text modal by clicking outside the modal box
+document.getElementById('feedback-text-modal').addEventListener('click', function (event) {
+    if (event.target === this) {
+        this.style.display = 'none';
+    }
+});
+
+// Close initial feedback modal (Give/Exit) by clicking outside the modal box
+document.getElementById('feedback-modal').addEventListener('click', function (event) {
+    if (event.target === this) {
+        this.style.display = 'none';
+    }
+});
+
+// Submit feedback with Enter key inside the textarea
+document.getElementById('feedback-text').addEventListener('keydown', function (event) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        document.getElementById('submit-feedback').click();
+    }
+});
+
+    </script>    
+</body>
+</html>

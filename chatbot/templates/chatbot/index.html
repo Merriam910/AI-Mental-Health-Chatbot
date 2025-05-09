@@ -1,0 +1,202 @@
+{% load static %}
+{% include 'chatbot/navbar.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Mental Health Chatbot-Mim</title>
+  <link rel="stylesheet" href="{% static 'chatbot/css/styles.css' %}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <style>
+ 
+      html {
+        scroll-behavior: smooth;
+      }
+    
+  
+
+    /* Hover Effect */
+    a:hover {
+      color: #2B7A69;
+    }
+    
+  </style>
+</head>
+<body>
+  <footer>
+  <section class="hero" id="hero">
+    <h1>Your AI Wellness Ally</h1> 
+    <h1>Awaits!</h1>
+    <p>Measure & improve your mental health with your personal AI Chat bot. Available 24/7, Just for you!</p>
+    
+    <div class="hero-buttons">
+ 
+      <a href="{% url 'login' %}" class="login-btn">Login</a>
+      <a href="{% url 'signup' %}" class="chat-btn">Chat with Mim</a>
+
+    </div>
+
+    <div class="image-container">
+      <div class="divider"></div> 
+      <img src="https://www.obcankari.cz/sites/default/files/styles/large/public/obrazky/ai-generated-8475824_12801.jpg?itok=jtdlx5A2" alt="Wellness Image">
+    </div>
+  </section>
+
+
+
+  <section class="about-us" id="aboutus">
+    <div class="text">
+      <h2>About Us</h2>
+      <p>We are dedicated to providing accessible, confidential, and AI-driven mental health support. Our chatbot offers real-time therapy and guidance, designed to be simple, intuitive, and available anytime. With a focus on your well-being, we aim to break down barriers to mental health care, ensuring everyone has access to support when they need it most.</p>
+      <a href="{% url 'about_us' %}" class="start-btn" target="_blank">Learn More</a>
+    </div>
+    <div class="image">
+      <img src="https://cdn.pixabay.com/photo/2023/12/09/10/09/woman-8439000_1280.png" alt="AI Wellness Image">
+    </div>
+  </section>
+
+  <!-- Third Page -->
+  <section class="third-page scroll-animate"id="services">
+    <h2>Explore Our Services</h2>
+    <div class="boxes-container">
+      
+      <div class="box">
+        <div class="box-inner">
+          <div class="box-front">
+            <img src="https://res.cloudinary.com/dm4vmfqle/image/upload/v1745706550/7b17cbd7-0e29-40ee-a964-139761411412_sman1j.jpg" alt="AI Powered">
+            <h3>AI Powered</h3>
+            <ul class="features-list">
+              <li>Auto-detect your mental state</li>
+              <li>Get immediate feedback</li>
+              <li>Chat with Mim!</li>
+            </ul>
+   
+            <a href="{% url 'ai_page' %}" class="learn-more-btn" target="_blank">Learn More</a>
+
+
+          </div>
+          <div class="box-back">
+            <p>Explore AI Powered</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="box">
+        <div class="box-inner">
+          <div class="box-front">
+            <img src="https://res.cloudinary.com/dm4vmfqle/image/upload/v1745706600/697f2d16-5492-4ecc-b4ad-e33d30f01f89_rn2xhb.jpg" alt="Radically Private">
+            <h3>Radically Private</h3>
+            <ul class="features-list">
+              <li>No lengthy forums</li>
+              <li>No personal data</li>
+              <li>Your data, only yours</li>
+            </ul>
+            <a href="{% url 'private_page' %}" class="learn-more-btn" target="_blank">Learn More</a>
+
+          </div>
+          <div class="box-back">
+            <p>Radical Privacy</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="box">
+        <div class="box-inner">
+          <div class="box-front">
+            <img src="https://res.cloudinary.com/dm4vmfqle/image/upload/v1745706668/e9db836c-2905-43f5-a229-8ad4aadf1cbf_a83m2v.jpg" alt="Effortless">
+            <h3>Effortless</h3>
+            <ul class="features-list">
+              <li>Completely free to use</li>
+              <li>Offering accessible support</li>
+              <li>Evidence-based techniques</li>
+            </ul>
+            <a href="{% url 'effortless_page' %}" class="learn-more-btn" target="_blank">Learn More</a>
+          </div>
+          <div class="box-back">
+            <p>Easy & Accessible</p>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+  
+  <section class="fourth-page">
+    <div class="fourth-content">
+      <h1>Try the AI Mental Health</h1>
+      <h2>Chatbot Today!</h2>
+      <p>
+        Taking care of your mental health has never been easier. Our AI-powered
+        chatbot is available 24/7 to provide support, guidance, and coping
+        strategies. Whether you're feeling stressed, anxious, or just need someone
+        to talk to, our chatbot is here to listen and help.
+      </p>
+  
+      <a href="{% url 'lm_page' %}" class="learn-more-btn" target="_blank">Learn More</a>
+    </div>
+  </section>
+  <section class="fifth-page" id="contact">
+
+    <h1 class="main-heading">Contact Us</h1>
+    
+    <div class="contact-container">
+      <section class="left-side">
+        <div class="contact-box">
+          <h2 class="get-in-touch">Get in touch</h2>
+          <p class="contact-info">
+            Phone: <span class="highlight">0 (800) 123 45 67</span><br>
+            WhatsApp: <span class="highlight">0 (800) 123 45 67</span><br>
+            Email: <span class="highlight">info@mim.com</span>
+          </p>
+          <p class="address">Address: <br> 350 5th Ave, UAE, Dubai</p>
+          <a href="{% url 'report_page' %}">Report Any Issue</a>
+
+        </div>
+      </section>
+      
+      <section class="right-side">
+        <!-- Embed Google Map -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.80464649916!2d55.22440932159203!3d25.27698744203867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5f5f5f5f5f5f%3A0x3e5f5f5f5f5f5f5f!2s350%205th%20Ave%2C%20UAE%2C%20Dubai!5e0!3m2!1sen!2sin!4v1630425137235" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </section>
+    </div>  </section>
+
+
+  </section>
+  <section class"footer">
+    <div class="footer">
+        <div class="footer-line"></div>
+        
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" title="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://youtube.com" target="_blank" title="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+        
+        <!-- Copyright Text -->
+        <div class="copyright">
+          &copy; 2025 All Rights Reserved
+        </div>
+      </div>
+      
+    </section>
+
+  
+    <script src="{% static 'chatbot/js/scripts.js' %}"></script>
+
+ </footer>
+</body>
+</html>

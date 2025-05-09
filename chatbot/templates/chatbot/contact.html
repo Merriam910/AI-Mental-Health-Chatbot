@@ -1,0 +1,257 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Report Any Issue</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+  
+    .container {
+      max-width: 435px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 90px 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+  
+    h1 {
+      text-align: center;
+      color: #000; /* Black */
+      margin-bottom: 25px;
+      font-size: 35px;
+    }
+  
+    .instruction {
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 14px;
+      text-align: center;
+    }
+  
+    .form-group {
+      margin-bottom: 20px;
+    }
+  
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #555;
+    }
+  
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+  
+    textarea {
+      height: 120px;
+      resize: vertical;
+    }
+  
+    .divider {
+      border-top: 1px solid #eee;
+      margin: 25px 0;
+    }
+  
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #2B7A69;
+      color: white;
+      border: none;
+      border-radius: 24px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+  
+    button:hover {
+      background-color: #1f5e4e;
+    }
+  
+    .success-tick {
+      text-align: center;
+      padding: 20px;
+    }
+  
+    .success-tick i {
+      font-size: 70px;
+      color: green;
+    }
+  
+    .success-message {
+      font-size: 20px;
+      margin-top: 20px;
+      color: #333;
+    }
+  
+    .footer {
+      background-color: #2B7A69;
+      padding: 2rem 1rem;
+      margin-top: 5rem;
+      text-align: center;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  
+    .footer-line {
+      background-color: #2B7A69;
+      height: 20px;
+      width: 100%;
+    }
+  
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+  
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: white;
+      color: #2B7A69;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+  
+    .social-icons a:hover {
+      background-color: #24695b;
+      color: white;
+    }
+  
+    .copyright {
+      color: white;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+  
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  
+    /* Responsive Adjustments */
+    @media (max-width: 600px) {
+      .contact-form {
+        padding: 20px 15px;
+      }
+
+      .send-btn {
+        width: 100%;
+      }
+    }
+    
+  </style>
+  
+
+  <!-- Font Awesome for tick icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <script src="{% static 'chatbot/js/navbar.js' %}"></script>
+
+
+  <div class="container">
+    {% if success %}
+      <div class="success-tick">
+        <i class="fas fa-check-circle"></i>
+        <div class="success-message">Thank you! Your report has been submitted.</div>
+      </div>
+      <script>
+        // Redirect to home after 3 seconds (3000 milliseconds)
+        setTimeout(function() {
+          window.location.href = "{% url 'home' %}";
+        }, 3000);
+      </script>
+    {% else %}
+      <h1>Report Any Issue</h1>
+      <p class="instruction">Report any issues and bugs below</p>
+      
+      <form method="POST">
+        {% csrf_token %}
+        
+        <div class="form-group">
+          <label for="{{ form.name.id_for_label }}">Name</label>
+          <input type="text" 
+                 id="{{ form.name.id_for_label }}" 
+                 name="{{ form.name.html_name }}" 
+                 class="form-control"
+                 required>
+        </div>
+        
+        <div class="form-group">
+          <label for="{{ form.email.id_for_label }}">Email</label>
+          <input type="email" 
+                 id="{{ form.email.id_for_label }}" 
+                 name="{{ form.email.html_name }}" 
+                 class="form-control"
+                 required>
+        </div>
+        
+               
+        <div class="form-group">
+          <label for="{{ form.message.id_for_label }}">Message</label>
+          <textarea id="{{ form.message.id_for_label }}" 
+                    name="{{ form.message.html_name }}" 
+                    class="form-control"
+                    required></textarea>
+        </div>
+
+        <div class="divider"></div>
+        
+        <button type="submit" class="send-btn">Send message</button>
+      </form>
+    {% endif %}
+  </div>
+  <section class="footer">
+    <div class="footer-line"></div>
+    
+    <!-- Social Media Icons -->
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank" title="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://twitter.com" target="_blank" title="Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://instagram.com" target="_blank" title="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://youtube.com" target="_blank" title="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </div>
+    
+    <!-- Copyright Text -->
+    <div class="copyright">
+      &copy; 2025 All Rights Reserved
+    </div>
+    
+</body>
+</html>
