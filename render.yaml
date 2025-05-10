@@ -1,14 +1,15 @@
- services:
+services:
   - type: web
     name: chatbot-web
     runtime: python
-    buildCommand: "if [ -f build.sh ]; then ./build.sh; else ./build.bat; fi"   
-    startCommand: "gunicorn chatbot_project.wsgi:application --workers 1 --threads 2 --timeout 180 --bind 0.0.0.0:10000"
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn chatbot_project.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --threads 2 --timeout 180"  # ← KEY CHANGE
     envVars:
+    
       - key: SECRET_KEY
         generateValue: true
-      - key: DEBUG
-        value: "False"
+      - key: PORT
+        value: "10000"
       - key: DB_URL
         fromDatabase:
           name: chatbot-db
