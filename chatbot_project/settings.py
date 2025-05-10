@@ -12,11 +12,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = ALLOWED_HOSTS = [
-    os.getenv('RENDER_EXTERNAL_HOSTNAME', 'localhost'), 
-    '0.0.0.0',
-    '127.0.0.1'
-]
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',') + ['localhost', '0.0.0.0']
+
 
 # Application definition
 INSTALLED_APPS = [

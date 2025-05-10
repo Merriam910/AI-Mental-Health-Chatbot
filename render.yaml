@@ -3,22 +3,14 @@ services:
     name: chatbot-web
     runtime: python
     buildCommand: "./build.sh"
-    startCommand: "gunicorn chatbot_project.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --threads 2 --timeout 180"  # ← KEY CHANGE
+    startCommand: "gunicorn chatbot_project.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --timeout 180"
     envVars:
-    
-      - key: SECRET_KEY
-        generateValue: true
       - key: PORT
-        value: "10000"
+        value: "10000"  # Must match environment variable
+      - key: DEBUG
+        value: "False"
       - key: DB_URL
         fromDatabase:
           name: chatbot-db
           property: connectionString
-      - key: PYTHONUNBUFFERED
-        value: "1"
-    plan: free
-    healthCheckPath: "/health/"
-
- databases:
-  - name: chatbot-db
     plan: free
